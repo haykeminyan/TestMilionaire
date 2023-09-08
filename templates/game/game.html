@@ -3,8 +3,55 @@
 {% endfor %}
 
 <br/>
-{% for answer in data.answer %}
-{{ answer.array_of_answers }}
-{% endfor %}
+{% for item in current_question_with_answer %}
+    {{ item.question }}
+  <br/>
+  <input type="radio" name="variant" value={{ item.array_of_answers.0 }}>{{ item.array_of_answers.0 }}
+  <input type="radio" name="variant" value={{ item.array_of_answers.1 }}>{{ item.array_of_answers.1 }}
+  <input type="radio" name="variant" value={{ item.array_of_answers.2 }}>{{ item.array_of_answers.2 }}
+
 <br/>
+        <button type="button" onclick="displayRadioValue()">
+        Submit
+    </button>
+
+  <div id="result"></div>
+  <div id="correct_result"></div>
+  <div id="current_points"></div>
+<script>
+        function displayRadioValue() {
+          var ele = document.getElementsByName('variant');
+
+          for (i = 0; i < ele.length; i++) {
+              if (ele[i].checked) {
+                var user_answer = ele[i].value
+                document.getElementById("result").innerHTML
+                  = "Your answer is: " + ele[i].value;
+              }
+          }
+          var correct_answer = '{{ item.correct_answer }}'
+          var user_points = Number('{{ item.points }}')
+          if (correct_answer === user_answer) {
+            document.getElementById("correct_result").innerHTML
+                  = "You are right!";
+            user_points += 1
+            document.getElementById("current_points").innerHTML
+                  = "Your current points are " + user_points;
+
+          }
+          else{
+            document.getElementById("correct_result").innerHTML
+                  = "The correct answer is: " + correct_answer
+
+            document.getElementById("current_points").innerHTML
+                  = "Your current points are " + user_points;
+          }
+        }
+
+        </script>
+  <br/>
+
+    {% endfor %}
+<br/>
+
 <a href="{% url 'home' %}"><button >Return to previous page</button></a>

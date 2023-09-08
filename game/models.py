@@ -36,14 +36,8 @@ class Answer(models.Model):
         on_delete=models.CASCADE,
         primary_key=True,
     )
-    array_of_answers = models.CharField(max_length=300)
+    array_of_answers = models.JSONField(default=dict)
     correct_answer = models.CharField(max_length=30)
-
-    def set_classification_id(self, lst):
-        self.classification_id = json.dumps(lst)
-
-    def get_classification_id(self):
-        return json.loads(self.classification_id)
 
     def __str__(self):
         return (f"Correct answer to the question"

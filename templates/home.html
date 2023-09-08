@@ -1,0 +1,35 @@
+<!-- templates/home.html-->
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+  {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/greeting.css' %}"/>
+<button onclick="typeWriter()">Start</button>
+<p id="greeting"></p>
+
+
+
+<script>
+let i = 0;
+let txt = `Hello {{ user.username }} it's time to play the game!`;
+let speed = 50;
+
+function typeWriter() {
+  if (i < txt.length) {
+    document.getElementById("greeting").innerHTML += txt.charAt(i);
+    i++;
+    setTimeout(typeWriter, speed);
+  }
+}
+</script>
+
+<a href="game" ><button >Enter the game</button></a>
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+{% endif %}
+{% endblock %}

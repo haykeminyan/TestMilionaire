@@ -1,4 +1,10 @@
+{% for question in data.question %}
+{{ question.question }}
+{% endfor %}
 
-ЫЫЫЫ
-
-<a href="greeting"><button >Return to previous page</button></a>
+<br/>
+{% for answer in data.answer %}
+{{ answer.array_of_answers }}
+{% endfor %}
+<br/>
+<a href="{% url 'home' %}"><button >Return to previous page</button></a>

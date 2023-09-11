@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Black">
+    <option name="enabledOnReformat" value="true" />
     <option name="executionMode" value="BINARY" />
     <option name="pathToExecutable" value="/opt/homebrew/bin/black" />
     <option name="sdkUUID" value="fe6f5bce-9466-4b6a-94ee-a58b3919ebd7" />

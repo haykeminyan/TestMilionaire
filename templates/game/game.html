@@ -6,9 +6,15 @@
 {% for item in current_question_with_answer %}
     {{ item.question }}
   <br/>
-  <input type="radio" name="variant" value={{ item.array_of_answers.0 }}>{{ item.array_of_answers.0 }}
-  <input type="radio" name="variant" value={{ item.array_of_answers.1 }}>{{ item.array_of_answers.1 }}
-  <input type="radio" name="variant" value={{ item.array_of_answers.2 }}>{{ item.array_of_answers.2 }}
+    <label>
+        <input type="radio" name={{ item }} value={{ item.array_of_answers.0 }}>
+    </label>{{ item.array_of_answers.0 }}
+    <label>
+        <input type="radio" name={{ item }} value={{ item.array_of_answers.1 }}>
+    </label>{{ item.array_of_answers.1 }}
+    <label>
+        <input type="radio" name={{ item }} value={{ item.array_of_answers.2 }}>
+    </label>{{ item.array_of_answers.2 }}
 
 <br/>
         <button type="button" onclick="displayRadioValue()">
@@ -19,8 +25,9 @@
   <div id="correct_result"></div>
   <div id="current_points"></div>
 <script>
+        let radioButon = '{{ item }}'
         function displayRadioValue() {
-          var ele = document.getElementsByName('variant');
+          var ele = document.getElementsByName(radioButon);
 
           for (i = 0; i < ele.length; i++) {
               if (ele[i].checked) {

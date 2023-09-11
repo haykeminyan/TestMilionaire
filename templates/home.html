@@ -1,12 +1,10 @@
 <!-- templates/home.html-->
-{% extends 'base.html' %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}"/>
 
-{% block title %}Home{% endblock %}
 
 {% block content %}
 {% if user.is_authenticated %}
-  {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/greeting.css' %}"/>
 <button onclick="typeWriter()">Start</button>
 <p id="greeting"></p>
 
@@ -29,7 +27,7 @@ function typeWriter() {
 <a href="game" ><button >Enter the game</button></a>
   <p><a href="{% url 'logout' %}">Log Out</a></p>
 {% else %}
-  <p>You are not logged in</p>
+  <p class="text-center">You are not logged in</p>
   <a href="{% url 'login' %}">Log In</a>
 {% endif %}
 {% endblock %}

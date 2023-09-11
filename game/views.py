@@ -7,20 +7,25 @@ from django.http import HttpResponse
 
 
 def login_page(request):
-    return render(request, 'game/login_page.html')
+    return render(request, "game/login_page.html")
 
 
-def game(request):
-    # all_questions = Question.objects.all().values()
-    # all_answers = Answer.objects.all().values()
-    current_question_with_answer = []
+def game(request, pk):
+    question = Question.objects.get(id=pk)
+    answer = Answer.objects.get(question_id=request.user.id)
 
-    for data_question, data_answer in zip(Question.objects.all().values(), Answer.objects.all().values()):
-        current_question_with_answer.extend([{'user': Profile.objects.get(id=request.user.id),
-                                          'points': Profile.objects.get(id=request.user.id).points,
-                                          'question': data_question['question'],
-                                          'array_of_answers': data_answer['array_of_answers'],
-                                          'correct_answer': data_answer['correct_answer']}])
-    print(current_question_with_answer)
+    data = {
+        "user": Profile.objects.get(id=request.user.id),
+        "points": Profile.objects.get(id=request.user.id).points,
+        "question_id": question.id,
+        "question": question.question,
+        "array_of_answers": answer.array_of_answers,
+        "correct_answer": answer.correct_answer,
+    }
+    print(data)
+    return render(
+        request,
+        "game/game.html",
+        {"data": data, "next_page": str(int(pk)+1), "previous_page": str(int(pk)-1)},
+    )
 
-    return render(request, "game/game.html", {'current_question_with_answer': current_question_with_answer})

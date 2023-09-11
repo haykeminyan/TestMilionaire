@@ -22,7 +22,8 @@ from django.contrib.auth.views import LoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('game', views.game),
+    path('game/question/<pk>', views.game, name='game'),
+    # path('game/question/', views.all_game, name='all_game'),
     path('accounts/', include("django.contrib.auth.urls")),
     # path("", TemplateView.as_view(template_name="home.html"), name="home"),
     path('', LoginView.as_view(template_name="home.html"), name="home"),

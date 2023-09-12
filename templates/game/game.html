@@ -31,17 +31,32 @@
     {{ form.as_p }}
     {% csrf_token %}
 <br/>
-    <p class="submit"><input type="submit" value="Submit" class="btn btn-lg btn-info btn-block"></p>
+    <p class="submit"><input type="submit" id="submit" value="Submit" class="btn btn-lg btn-info btn-block"></p>
   <br/>
 <br/>
 
-
 </form>
-
 {% if variant %}
+        <script>
+        let fields = document.getElementsByClassName("answer");
+        document.getElementById("submit").disabled = true;
+        for(let i = 0; i < fields.length; i++)
+        {
+            fields[i].disabled = true;
+        }
+    </script>
     {% if variant != data.correct_answer%}
         <p class="errorMessage">You are wrong! Correct answer is {{ answer}}</p>
     {% endif %}
+    <script>
+        if (document.referrer === document.documentURI) {
+            alert("Please enter Next question!")
+        }
+    </script>
+    {% else %}
+    <script>
+        alert("Please select one of the variants!");
+    </script>
 {% endif %}
 <br/>
 <p class="pointsMessage">Your current score is {{ points }}</p>

@@ -1,8 +1,7 @@
-!!!!
-{{ data }}
 <br/>
     {{ data.question }}
   <br/>
+<form method="post">
     <label>
         <input type="radio" name='variant' value={{ data.array_of_answers.0 }}>
     </label>{{  data.array_of_answers.0 }}
@@ -13,10 +12,20 @@
         <input type="radio" name='variant' value={{ data.array_of_answers.2 }}>
     </label>{{ data.array_of_answers.2 }}
 <br/>
-        <button type="button" onclick="displayRadioValue()" >
-        Submit
-    </button>
 
+    {{ form.as_p }}
+    {% csrf_token %}
+    <input type="submit" value="Submit">
+
+{{ variant }}
+{{ data.correct_answer }}
+{% with points=user.points %}
+    {% if variant == data.correct_answer %}
+     {{ points|add:"1" }}
+    {% endif %}
+{% endwith %}
+
+{{ points }}
   <div id="result"></div>
   <div id="correct_result"></div>
   <div id="current_points"></div>
@@ -52,7 +61,7 @@
         </script>
   <br/>
 <br/>
-
+</form>
 <a href="{% url 'game' pk %}"><button >Next question</button></a>
 <br/>
 <br/>

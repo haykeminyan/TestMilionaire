@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Profile, Question, Answer
+from django.db.models import F
+
 
 
 def game(request, pk):
@@ -17,19 +19,20 @@ def game(request, pk):
     }
 
     next_page = question.id + 1
-    print(request.user)
-    # if request.method == "POST":
+
+    # if request.method == 'POST':
     variant = request.POST.get("variant", 0)
     if variant == answer.correct_answer:
         user.points += 1
-    else:
-        user.points += 0
-        print('NO')
-    # print(data)
-    # print( user.points)
+        Profile.objects.filter(id=request.user.id).update(points=user.points)
+
+
     return render(
         request,
         "game/game.html",
-        {"data": data, "pk": next_page, "variant": variant},
+        {"data": data, "pk": next_page, "points": user.points, "variant": variant, "answer": answer.correct_answer},
     )
 
+def result(request):
+    user = Profile.objects.get(id=request.user.id)
+    return render(request, 'result/result.html', {'user': user})

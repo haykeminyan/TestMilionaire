@@ -15,54 +15,28 @@
 
     {{ form.as_p }}
     {% csrf_token %}
+
     <input type="submit" value="Submit">
 
-{{ variant }}
-{{ data.correct_answer }}
-{% with points=user.points %}
-    {% if variant == data.correct_answer %}
-     {{ points|add:"1" }}
-    {% endif %}
-{% endwith %}
-
-{{ points }}
-  <div id="result"></div>
-  <div id="correct_result"></div>
-  <div id="current_points"></div>
-<script>
-        function displayRadioValue() {
-          var ele = document.getElementsByName('variant');
-
-          for (i = 0; i < ele.length; i++) {
-              if (ele[i].checked) {
-                var user_answer = ele[i].value
-                document.getElementById("result").innerHTML
-                  = "Your answer is: " + ele[i].value;
-              }
-          }
-          var correct_answer = '{{ data.correct_answer }}'
-          var user_points = Number('{{ data.points }}')
-          if (correct_answer === user_answer) {
-            document.getElementById("correct_result").innerHTML
-                  = "You are right!";
-            user_points += 1
-            document.getElementById("current_points").innerHTML
-                  = "Your current points are " + user_points;
-
-          }
-          else{
-            document.getElementById("correct_result").innerHTML
-                  = "The correct answer is: " + correct_answer
-
-            document.getElementById("current_points").innerHTML
-                  = "Your current points are " + user_points;
-          }
-        }
-        </script>
   <br/>
 <br/>
-</form>
+    </form>
+
+
+{% if variant != data.correct_answer%}
+You are wrong! Correct answer is {{ answer}}
+{% endif %}
+<br/>
+Your current score is {{ points }}
+<br/>
 <a href="{% url 'game' pk %}"><button >Next question</button></a>
 <br/>
 <br/>
 <a href="{% url 'home' %}"><button >Return to previous page</button></a>
+<br/>
+<br/>
+<a href="{% url 'result' %}"><button >Finish game</button></a>
+
+<script>
+window.onbeforeunload = function(event) { event.returnValue = "Write something clever here.."; };
+</script>

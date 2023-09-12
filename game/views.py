@@ -3,7 +3,6 @@ from .models import Profile, Question, Answer
 from django.db.models import F
 
 
-
 def game(request, pk):
     question = get_object_or_404(Question, pk=pk)
     answer = Answer.objects.get(question_id=request.user.id)
@@ -20,11 +19,12 @@ def game(request, pk):
 
     next_page = question.id + 1
 
-    # if request.method == 'POST':
-    variant = request.POST.get("variant", 0)
-    if variant == answer.correct_answer:
-        user.points += 1
-        Profile.objects.filter(id=request.user.id).update(points=user.points)
+    variant = request.POST.get("variant", None)
+    print(request.POST)
+    if variant:
+        if variant == answer.correct_answer:
+            user.points += 1
+            Profile.objects.filter(id=request.user.id).update(points=user.points)
 
 
     return render(
@@ -32,6 +32,7 @@ def game(request, pk):
         "game/game.html",
         {"data": data, "pk": next_page, "points": user.points, "variant": variant, "answer": answer.correct_answer},
     )
+
 
 def result(request):
     user = Profile.objects.get(id=request.user.id)

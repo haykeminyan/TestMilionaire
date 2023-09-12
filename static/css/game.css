@@ -1,0 +1,7 @@
+.question, #myForm, .errorMessage, .pointsMessage{
+    text-align: center;
+}
+
+.nextQuestion, .previousPage, .finish {
+  text-align: center;
+}

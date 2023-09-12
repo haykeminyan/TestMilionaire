@@ -1,42 +1,56 @@
+{% load static %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/game.css' %}"/>
+
 <br/>
-    {{ data.question }}
+<p class="question">{{ data.question }}</p>
   <br/>
-<form method="post">
+<form id="myForm" method="post" >
     <label>
-        <input type="radio" name='variant' value={{ data.array_of_answers.0 }}>
-    </label>{{  data.array_of_answers.0 }}
+        <input type="radio" name='variant' class="answer" value={{ data.array_of_answers.0 }}>
+        {{  data.array_of_answers.0 }}
+    </label>
     <label>
-        <input type="radio" name='variant' value={{ data.array_of_answers.1 }}>
-    </label>{{ data.array_of_answers.1 }}
+        <input type="radio" name='variant' class="answer" value={{ data.array_of_answers.1 }}>
+        {{ data.array_of_answers.1 }}
+    </label>
+    <br/>
+    <br/>
     <label>
-        <input type="radio" name='variant' value={{ data.array_of_answers.2 }}>
-    </label>{{ data.array_of_answers.2 }}
+        <input type="radio" name='variant' class="answer" value={{ data.array_of_answers.2 }}>
+        {{ data.array_of_answers.2 }}
+    </label>
+    <label>
+        <input type="radio" name='variant' class="answer" value={{ data.array_of_answers.3 }}>
+        {{ data.array_of_answers.3 }}
+    </label>
 <br/>
 
     {{ form.as_p }}
     {% csrf_token %}
-
-    <input type="submit" value="Submit">
-
+<br/>
+    <p class="submit"><input type="submit" value="Submit" class="btn btn-lg btn-info btn-block"></p>
   <br/>
 <br/>
-    </form>
 
 
-{% if variant != data.correct_answer%}
-You are wrong! Correct answer is {{ answer}}
+</form>
+
+{% if variant %}
+    {% if variant != data.correct_answer%}
+        <p class="errorMessage">You are wrong! Correct answer is {{ answer}}</p>
+    {% endif %}
 {% endif %}
 <br/>
-Your current score is {{ points }}
+<p class="pointsMessage">Your current score is {{ points }}</p>
 <br/>
-<a href="{% url 'game' pk %}"><button >Next question</button></a>
-<br/>
-<br/>
-<a href="{% url 'home' %}"><button >Return to previous page</button></a>
+<p class='nextQuestion'><a href="{% url 'game' pk %}"><button class="btn btn-lg btn-primary btn-block" >Next question</button></a></p>
 <br/>
 <br/>
-<a href="{% url 'result' %}"><button >Finish game</button></a>
+<p class='previousPage'><a href="{% url 'home' %}"><button class="btn btn-lg btn-warning btn-block">Return to previous page</button></a></p>
+<br/>
+<br/>
+<p class="finish"><a href="{% url 'result' %}"><button class="btn btn-lg btn-success btn-block">Finish game</button></a></p>
 
-<script>
-window.onbeforeunload = function(event) { event.returnValue = "Write something clever here.."; };
-</script>

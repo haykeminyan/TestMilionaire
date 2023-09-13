@@ -30,4 +30,11 @@ Things to improve and fix if wanna see amazing application:
 1. <b>Bug</b>: The user can input the right answer refresh the page and collect points. Can be solved with sessions in Django.
 2. <b>Improvement</b>: As the rule of the game user can manually choose difficulty with separate junior/middle/senior questions.
 3. <b>Improvement</b>: Need add tests for backend part (pytest). For example to check if all questions are unique. <br/> For the Frontend part too. For example, Cypress or Playwright to check if the user can't cheat.
-4. <b>Improvement</b>: Add more responsive and user-friendly design and deploy to some domain :=)
+5. <b>Improvement</b>: Add more responsive and user-friendly design (for example that user will see that all questions are answered and after right/wrong choosing answer see his result in radiobuttons) and deploy to some domain :=)
+
+
+
+https://github.com/haykeminyan/TestMilionaire/assets/43892880/36c15955-eeb7-4d0c-9e48-624b6bb1d88c
+
+
+Short demo video with features which are described earlier.

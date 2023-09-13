@@ -32,7 +32,7 @@ Things to improve and fix if wanna see amazing application:
 2. <b>Improvement</b>: As the rule of the game user can manually choose difficulty with separate junior/middle/senior questions.
 3. <b>Improvement</b>: Need add tests for backend part (pytest). For example to check if all questions are unique. <br/> For the Frontend part too. For example, Cypress or Playwright to check if the user can't cheat.
 5. <b>Improvement</b>: Add a more responsive and user-friendly design (for example the user will see that all questions are answered and after the right/wrong choosing answer see his result in radio buttons) and deploy to some domain :=)
-
+6. <b>Improvement</b>: Small clean-up in requirements.txt just copied from previous projects may be such a lot dependencies not needed.
 
 
 https://github.com/haykeminyan/TestMilionaire/assets/43892880/36c15955-eeb7-4d0c-9e48-624b6bb1d88c

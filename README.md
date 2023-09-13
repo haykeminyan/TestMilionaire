@@ -24,13 +24,14 @@ A couple of technical words about this task
 5. All questions begin from easy to hard. Junior questions +5 points, Middle questions +10 points, Senior questions +20 points :=)
 6. Added blockers with JavaScript in templates (when a user submits an answer he will not allowed to re-click the radio button and re-send the form via POST request).<br/> New page developed by GET request, submit form POST request. <br/> During POST request I checked what in the payload what user has inputted (answer) and added csrf-token in this request for safety too.
 7. The user can quit the game whenever he wants and I added button to finish the game with the current result of the game or drop the game and return to the start.
+8. Added pre-commit configuration with hooks that cleaned up all code (black, isort, trailing-comma, ... etc)
 
 
 Things to improve and fix if wanna see amazing application:
 1. <b>Bug</b>: The user can input the right answer refresh the page and collect points. Can be solved with sessions in Django.
 2. <b>Improvement</b>: As the rule of the game user can manually choose difficulty with separate junior/middle/senior questions.
 3. <b>Improvement</b>: Need add tests for backend part (pytest). For example to check if all questions are unique. <br/> For the Frontend part too. For example, Cypress or Playwright to check if the user can't cheat.
-5. <b>Improvement</b>: Add more responsive and user-friendly design (for example that user will see that all questions are answered and after right/wrong choosing answer see his result in radiobuttons) and deploy to some domain :=)
+5. <b>Improvement</b>: Add a more responsive and user-friendly design (for example the user will see that all questions are answered and after the right/wrong choosing answer see his result in radio buttons) and deploy to some domain :=)
 
 
 

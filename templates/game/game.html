@@ -9,21 +9,21 @@
   <br/>
 <form id="myForm" method="post" >
     <label>
-        <input type="radio" name='variant' class="answer" value={{ data.array_of_answers.0 }}>
+        <input type="radio" name='variant' class="answer" value="{{ data.array_of_answers.0 }}">
         {{  data.array_of_answers.0 }}
     </label>
     <label>
-        <input type="radio" name='variant' class="answer" value={{ data.array_of_answers.1 }}>
+        <input type="radio" name='variant' class="answer" value="{{ data.array_of_answers.1 }}">
         {{ data.array_of_answers.1 }}
     </label>
     <br/>
     <br/>
     <label>
-        <input type="radio" name='variant' class="answer" value={{ data.array_of_answers.2 }}>
+        <input type="radio" name='variant' class="answer" value="{{ data.array_of_answers.2 }}">
         {{ data.array_of_answers.2 }}
     </label>
     <label>
-        <input type="radio" name='variant' class="answer" value={{ data.array_of_answers.3 }}>
+        <input type="radio" name='variant' class="answer" value="{{ data.array_of_answers.3 }}">
         {{ data.array_of_answers.3 }}
     </label>
 <br/>
@@ -47,16 +47,15 @@
     </script>
     {% if variant != data.correct_answer%}
         <p class="errorMessage">You are wrong! Correct answer is {{ answer}}</p>
+        {% else %}
+        <p class="errorMessage">You are right! Congratulations! </p>
     {% endif %}
     <script>
         if (document.referrer === document.documentURI) {
             alert("Please enter Next question!")
         }
     </script>
-    {% else %}
-    <script>
-        alert("Please select one of the variants!");
-    </script>
+
 {% endif %}
 <br/>
 <p class="pointsMessage">Your current score is {{ points }}</p>

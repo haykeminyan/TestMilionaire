@@ -36,7 +36,7 @@ class Answer(models.Model):
         on_delete=models.CASCADE,
         primary_key=True,
     )
-    array_of_answers = models.JSONField(default=dict)
+    array_of_answers = models.JSONField(default=list)
     correct_answer = models.CharField(max_length=30)
 
     def __str__(self):
